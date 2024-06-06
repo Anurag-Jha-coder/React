@@ -1,3 +1,82 @@
-#parent{
-    color: red;
+*{
+    margin: 0;
+    padding: 0;;
 }
+
+.header{
+    border: 2px solid black;
+    justify-content:space-between ; 
+    display: flex;
+    padding: 5px;
+    z-index: 10;
+    
+}
+
+.nav-item{
+  width: 70%;
+}
+.nav-item>ul{
+    display: flex;
+    width: 100%;
+    justify-content: right;
+    
+
+}
+.nav-item>ul>li{
+    list-style-type: none;
+    padding: 10px;
+    margin: 30px 20px;
+    font-size: 24px;
+}
+
+
+.logo > img{
+    width: 150px;
+}
+
+
+.search{
+    border-radius: 10px;
+    height: 24px;
+}
+
+.search-button{
+    border-radius: 10px;
+    height: 24px;
+    width: 70px;
+    margin: 10px;
+    
+}
+.res-card{
+
+    width: 300px;
+    /* border: 1px solid black; */
+    margin: 15px;
+    padding: 5px;
+    overflow: hidden;
+    box-sizing: border-box;
+    
+}
+
+.res-card:hover{
+    border:  solid black;
+    cursor: pointer;
+}
+
+
+
+.cart-image{
+    width: 300px;
+  height: 200px;
+  object-fit: fill;
+  /* padding: 5px; */
+   
+}
+
+.res-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
