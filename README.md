@@ -1,0 +1,14 @@
+/*
+Header
+ -logo
+ -Nav-items
+Body
+ -Search 
+ -RestourantContainer
+ -RestourantCard
+Footer
+ -Copyright
+ -Links
+ -Addres
+ -contacts
+*/
