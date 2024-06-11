@@ -2,8 +2,17 @@
 import { img_url } from "../utils/constants";
 const RestaurantCard = (props) => {
   const { resdata } = props;
-  const { name, avgRating, deliveryTime, cuisines, cloudinaryImageId } =
-    resdata?.data;
+  console.log(resdata);
+
+  
+    const { name , 
+      avgRating, 
+      deliveryTime, 
+      cuisines, 
+      cloudinaryImageId 
+    } = resdata?.info || resdata?.data;
+
+ 
 
   return (
     <div className="res-card">
