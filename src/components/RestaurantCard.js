@@ -2,15 +2,12 @@
 import { img_url } from "../utils/constants";
 const RestaurantCard = (props) => {
   const { resdata } = props;
-  console.log(resdata);
-
-  
-    const { name , 
+  const { name , 
       avgRating, 
       deliveryTime, 
       cuisines, 
       cloudinaryImageId 
-    } = resdata?.info || resdata?.data;
+    } = resdata?.info ;
 
  
 

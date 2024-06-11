@@ -83,5 +83,24 @@
     padding: 5px;
 }
 
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+}
 
 
+.shimmer-card{
+    width: 300px;
+    height: 370px;
+    background-color: #80808050;
+    margin: 15px;
+    padding: 5px;
+    overflow: hidden;
+    box-sizing: border-box;
+    
+}
+.login-btn{
+    padding: 0px  20px;
+    margin: 15px;
+    
+}
