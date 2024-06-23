@@ -2,30 +2,17 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import { RES_INFO_API } from "../utils/constants";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = (props) => {
-  const [resInfo, setresInfo] = useState(null);
-
   const { resId } = useParams();
-  console.log(resId);
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const data = await fetch(RES_INFO_API + resId);
-
-    const json = await data.json();
-    console.log(json);
-    console.log(json?.data);
-    setresInfo(json?.data);
-  };
+  const resInfo = useRestaurantMenu(resId);
 
   if (resInfo === null) {
     return <Shimmer />;
   }
 
-  console.log(resInfo);
   const {
     name,
     cuisines,
@@ -37,49 +24,46 @@ const RestaurantMenu = (props) => {
 
   const { itemCards } =
     resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
-  console.log(itemCards);
+
+  const categories =
+    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (cards) =>
+        cards?.card?.card?.["@type"] ==
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
 
   return (
-    <div className="res-info-container">
-      <h2 className="res-name">{name}</h2>
-      <div className="res-info">
+    <div className="   res-info-container ">
+      <h2 className=" text-xl font-bold mx-[373px] mt-5 p-2 ">{name}</h2>
+      <div
+        className="border-2 m-auto my-3 p-4 h-44 w-1/2 
+    rounded-2xl shadow-xl shadow-gray-200"
+      >
         <div className="box1">
-          <h4>
-            {avgRatingString}({totalRatingsString}) . {costForTwoMessage}
+          <h4 className="text-sm font-bold">
+            ★{avgRatingString}({totalRatingsString}) . {costForTwoMessage}
           </h4>
-          <h5>{cuisines.join(", ")}</h5>
-          <div className="outlet">
-            <p className="margin">
-              <b>Outlet    </b> {areaName}
+          <h5 className="text-xs text-red-600">{cuisines.join(", ")}</h5>
+          <div className=" text-xs border-l-4 border-gray-500 px-4 my-5 outlet">
+            <p className=" text-xs my-3">
+              <b>Outlet </b>
+              {areaName}
             </p>
             <p>20 - 30 mins</p>
           </div>
           <div className="bottom">
-            <p>Order above 149 for discounted delivery fee</p>
+            <p className="text-xs border-t-2 py-2">
+              Order above 149 for discounted delivery fee
+            </p>
           </div>
         </div>
       </div>
 
-      <div className="offers"></div>
-
-      <div className="res-menu">
-        <div className="top-picks"></div>
-        <div className="rec-heading">
-          <h2>Recomended</h2>
-        </div>
-        <div className="recommended">
-          {itemCards.map((item) => {
-            return (
-              <div className="rec-list">
-                <ul>
-                  <li>
-                    {item?.card?.info?.name} - {item?.card?.info?.price / 100}
-                  </li>
-                </ul>
-              </div>
-            );
-          })}
-        </div>
+      {/* RES Category*/}
+      <div>
+        {categories.map((category) => {
+          return <RestaurantCategory key = {category?.card?.card.title}data={category?.card?.card} />;
+        })}
       </div>
     </div>
   );
