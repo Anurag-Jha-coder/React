@@ -15,8 +15,8 @@ const RestaurantCard = (props) => {
 
       <div className="res-info">
         <h2>{name}</h2>
-        <spam >{avgRating + " ★ "}</spam>
-        <spam>{deliveryTime + " mins"}</spam>
+        <span >{avgRating + " ★ "}</span>
+        <span>{deliveryTime + " mins"}</span>
         <p>{cuisines.join(", ")}</p>
       </div>
     </div>

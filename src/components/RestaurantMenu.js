@@ -8,6 +8,7 @@ import RestaurantCategory from "./RestaurantCategory";
 const RestaurantMenu = (props) => {
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId);
+  const [showIndex, setshowIndex] = useState() ;
 
   if (resInfo === null) {
     return <Shimmer />;
@@ -61,8 +62,12 @@ const RestaurantMenu = (props) => {
 
       {/* RES Category*/}
       <div>
-        {categories.map((category) => {
-          return <RestaurantCategory key = {category?.card?.card.title}data={category?.card?.card} />;
+        {categories.map((category, index) => {
+          return <RestaurantCategory key = {category?.card?.card.title}
+          data={category?.card?.card} 
+          showItemList = {index == showIndex } 
+          setshowIndex = { () =>(setshowIndex(index))}  
+          />;
         })}
       </div>
     </div>

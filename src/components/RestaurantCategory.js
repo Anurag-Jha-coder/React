@@ -2,10 +2,10 @@ import { retryable } from "async";
 import ItemList from "./ItemList";
 import { useState } from "react";
 
-const RestaurantCategory = ({ data }) => {
-  const [showItemList,  setShowItemList] = useState(false);
+const RestaurantCategory = ({ data, showItemList, setshowIndex }) => {
+  
   const onclickHandler = ()=>{
-    showItemList?setShowItemList(false):setShowItemList(true);
+    setshowIndex();
   }
   return (
     <div>

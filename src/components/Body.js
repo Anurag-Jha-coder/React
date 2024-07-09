@@ -2,15 +2,17 @@ import { Link } from "react-router-dom";
 import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import Shimmer from "./Shimmer";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useEffect } from "react";
 import { withPromotedLabel } from "./RestaurantCard";
+import userContext from "../utils/userContext";
 
 const Body = (props) => {
   const [listOfRestaurant, setlistOfRestaurant] = useState([]);
   const [filteredRestaurant, setfilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
   const PromotedRestaurantCard = withPromotedLabel(RestaurantCard);
+  const { loggedInUser, setUserName } = useContext(userContext);
 
   useEffect(() => {
     fetchData();
@@ -46,11 +48,10 @@ const Body = (props) => {
 
   return (
     <div className="body">
-      
       <div className="flex justify-center items-center">
         <div className="search-bar">
           <input
-            className=" m-4 px-2 py-1 bg-cyan-100"
+            className=" m-4 px-2 py-1 border-2 border-black"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
@@ -72,6 +73,17 @@ const Body = (props) => {
             search
           </button>
         </div>
+
+        <div  className= "mx-4">
+          <label className="mx-2" htmlFor="">UserName :</label>
+          <input className="border p-1 border-black"
+            type="text"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
+
+
         <div className="  m-3 px-2 py-1 bg-green-400 rounded-md">
           <button
             className="filter-btn"
