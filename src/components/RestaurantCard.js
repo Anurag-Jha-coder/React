@@ -1,11 +1,12 @@
 import { img_url } from "../utils/constants";
 const RestaurantCard = (props) => {
   const { resdata } = props;
+ 
   const { name, avgRating, deliveryTime, cuisines, cloudinaryImageId } =
     resdata?.info;
 
   return (
-    <div className=" m-5  w-60 h-72 text-ellipsis overflow-hidden rounded-xl shadow-md transition-transform hover:scale-90">
+    <div data-testid = "restaurant-card" className=" m-5  w-60 h-72 text-ellipsis overflow-hidden rounded-xl shadow-md transition-transform hover:scale-90">
       <img 
 
         className="w-full h-52 object-cover"

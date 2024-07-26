@@ -4,7 +4,6 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 import Shimmer from "./Shimmer";
 import { useState, useContext } from "react";
 import { useEffect } from "react";
-import { withPromotedLabel } from "./RestaurantCard";
 import userContext from "../utils/userContext";
 
 const Body = (props) => {
@@ -25,6 +24,7 @@ const Body = (props) => {
 
     const json = await data.json();
 
+
     setlistOfRestaurant(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
@@ -42,7 +42,7 @@ const Body = (props) => {
       </h1>
     );
 
-  if (listOfRestaurant.length == 0) {
+  if (!listOfRestaurant ||listOfRestaurant.length == 0) {
     return <Shimmer />;
   }
 
@@ -51,6 +51,7 @@ const Body = (props) => {
       <div className="flex justify-center items-center">
         <div className="search-bar">
           <input
+            data-testid="input-box"
             className=" m-4 px-2 py-1 border-2 border-black"
             value={searchText}
             onChange={(e) => {
@@ -59,6 +60,7 @@ const Body = (props) => {
             type="text"
           />
           <button
+            data-testid="search"
             className=" m-3 px-2 py-1 bg-green-400 search-button rounded-md"
             onClick={() => {
               const searchedList = listOfRestaurant.filter((res) => {
@@ -86,6 +88,7 @@ const Body = (props) => {
 
         <div className="  m-3 px-2 py-1 bg-green-400 rounded-md">
           <button
+            data-testid = "top-Rated-Res"
             className="filter-btn"
             onClick={() => {
               const filteredList = listOfRestaurant.filter((res) => {
